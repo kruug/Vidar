@@ -11,12 +11,12 @@
       "RelativeMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|solutionrelative:vidar\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|c:\\users\\kruug\\source\\repos\\vidar\\vidar\\profile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|solutionrelative:vidar\\profile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|c:\\users\\kruug\\source\\repos\\vidar\\vidar\\items.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|solutionrelative:vidar\\items.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|c:\\users\\kruug\\source\\repos\\vidar\\vidar\\profile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|solutionrelative:vidar\\profile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|c:\\users\\kruug\\source\\repos\\vidar\\vidar\\secrets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,7 +38,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Items.cs",
               "DocumentMoniker": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Items.cs",
               "RelativeDocumentMoniker": "Vidar\\Items.cs",
@@ -57,14 +57,14 @@
               "RelativeDocumentMoniker": "Vidar\\Lotto.cs",
               "ToolTip": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Lotto.cs",
               "RelativeToolTip": "Vidar\\Lotto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAsAAAA",
+              "ViewState": "AQIAAFwAAAAAAAAAAAAwwGwAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-02T16:10:12.573Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Profile.cs",
               "DocumentMoniker": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Profile.cs",
               "RelativeDocumentMoniker": "Vidar\\Profile.cs",
@@ -83,7 +83,7 @@
               "RelativeDocumentMoniker": "Vidar\\Secrets.cs",
               "ToolTip": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Secrets.cs",
               "RelativeToolTip": "Vidar\\Secrets.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAnAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAABgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-02T15:22:04.652Z",
               "EditorCaption": ""
@@ -96,7 +96,7 @@
               "RelativeDocumentMoniker": "Vidar\\Program.cs",
               "ToolTip": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Program.cs",
               "RelativeToolTip": "Vidar\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAvAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAAxwCMAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-02T14:54:46.896Z",
               "EditorCaption": ""
