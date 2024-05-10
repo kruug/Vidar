@@ -13,6 +13,7 @@ using DSharpPlus.Interactivity.Extensions;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using DSharpPlus.EventArgs;
+using MySqlConnector;
 
 namespace Vidar
 {
@@ -22,22 +23,28 @@ namespace Vidar
         bool lottoLock = false;
         bool lottoDrawn = false;
         bool prizeSent = false;
+        string lottoPrize = "";
         static Random rnd = new Random();
         DiscordUser? lottoRunner;
 
         [Command("startlotto")]
         [Aliases("sl")]
-        public async Task StartLottoCommand(CommandContext ctx)
+        public async Task StartLottoCommand(CommandContext ctx, [RemainingText] string prize)
         {
-            if (!lottoLock)
+            DiscordRole lottoPing = ctx.Guild.GetRole(1235663172006973460);
+            if (!ctx.Member.Roles.Contains(lottoPing))
+            {
+                await ctx.RespondAsync("You are not registered with the bot. Please use `!register <Cartel Empire ID>` to register your ID with the bot.");
+            } else if (!lottoLock)
             {
                 await ctx.TriggerTypingAsync();
                 lottoRunner = ctx.User;
-                DiscordRole lottoPing = ctx.Guild.GetRole(1235663172006973460);
+                //DiscordRole lottoPing = ctx.Guild.GetRole(1235663172006973460);
                 lottoLock = true;
                 lottoEntries.Clear();
+                lottoPrize = prize;
 
-                string lottoStartMessage = $"Hey, {lottoPing.Mention}!" + System.Environment.NewLine + "A lotto has started! Join now with `!j`!";
+                string lottoStartMessage = $"Hey, {lottoPing.Mention}!" + System.Environment.NewLine + $"A lotto has started for {prize}! Join now with `!j`!";
 
                 var msg = await new DiscordMessageBuilder()
                     .WithContent(lottoStartMessage)
@@ -54,11 +61,15 @@ namespace Vidar
         [Aliases("j")]
         public async Task JoinLottoCommand(CommandContext ctx)
         {
+            DiscordRole lottoPing = ctx.Guild.GetRole(1235663172006973460);
             if (ctx.User == lottoRunner)
             {
                 await ctx.RespondAsync("You cannot join your own lotto.");
             }
-            else
+            else if (!ctx.Member.Roles.Contains(lottoPing))
+            {
+                await ctx.RespondAsync("You are not registered with the bot. Please use `!register <Cartel Empire ID>` to register your ID with the bot.");
+            } else
             {
                 if (lottoLock && !lottoDrawn)
                 {
@@ -71,7 +82,7 @@ namespace Vidar
                     else
                     {
                         lottoEntries.Add(ctx.User);
-                        response = $"{ctx.User.Mention} has entered the lotto.";
+                        response = $"{ctx.User.Mention} has entered the lotto for {lottoPrize}.";
                     }
                     await ctx.RespondAsync(response);
                 }
@@ -86,13 +97,43 @@ namespace Vidar
         public async Task DrawLottoCommand(CommandContext ctx)
         {
             await ctx.TriggerTypingAsync();
+            long winner_id = 0;
 
             if (ctx.User == lottoRunner)
             {
                 lottoDrawn = true;
                 int r = rnd.Next(lottoEntries.Count);
                 DiscordUser winner = lottoEntries[r];
-                await ctx.RespondAsync($"Congratulations {winner.Mention}! You won the lotto!");
+
+                MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder
+                {
+                    Server = Secrets.SQL_SERVER,
+                    UserID = Secrets.SQL_USER,
+                    Password = Secrets.SQL_PASSWORD,
+                    Database = Secrets.SQL_DATABASE,
+                };
+
+                // open a connection asynchronously
+                using MySqlConnection connection = new MySqlConnection(builder.ConnectionString);
+                try {
+                    await connection.OpenAsync();
+                    
+                    using MySqlCommand command = connection.CreateCommand();
+                    command.CommandText = @"SELECT user_id FROM playerregister WHERE discord_id = '" + winner.Id + "';";
+                    MySqlDataReader reader = command.ExecuteReader();
+                    
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            winner_id = reader.GetInt32(0);
+                        }
+                    }
+                    reader.Close();
+                } catch (MySqlException ex) {
+                    await ctx.Channel.SendMessageAsync("SQL connection failed in report." + Environment.NewLine + ex.Message);
+                }
+                await ctx.RespondAsync($"Congratulations {winner.Mention}[{winner_id}]! You won the lotto for {lottoPrize}!");
 
                 await listen(ctx);
             } else
@@ -120,6 +161,7 @@ namespace Vidar
             {
                 await ctx.TriggerTypingAsync();
                 await ctx.RespondAsync($"Shame on you,{lottoRunner.Mention}...where is the send line?");
+                await listen(ctx);
             }
         }
 

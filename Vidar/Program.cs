@@ -3,7 +3,6 @@ using DSharpPlus.CommandsNext;
 using Vidar;
 using System;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using DSharpPlus.EventArgs;
 using DSharpPlus.Entities;
 using DSharpPlus.AsyncEvents;
@@ -38,27 +37,34 @@ namespace Vidar
             });
 
             commands.RegisterCommands<Lotto>();
+            commands.RegisterCommands<Profile>();
 
             discord.GuildMemberAdded += MemberAddedHandler;
 
             Task MemberAddedHandler(DiscordClient s, GuildMemberAddEventArgs e)
             {
-                DiscordRole lottoUsers = e.Guild.GetRole(1235663172006973460);
-                e.Member.GrantRoleAsync(lottoUsers);
+                e.Guild.GetChannel(1235322443237818511).SendMessageAsync($"Welcome {e.Member.Mention}! Please use `!register <Cartel Empire ID>` to register your ID with the bot.");
                 return Task.CompletedTask;
             }
 
             commands.CommandErrored += Commands_CommandErrored;
+            discord.ClientErrored += Discord_ClientErrored;
 
             /*
-                        var slash = discord.UseSlashCommands();
+            var slash = discord.UseSlashCommands();
 
-                        slash.RegisterCommands<Profile>();
-                        slash.RegisterCommands<Lotto>();
-                        slash.RegisterCommands<Items>();
+            slash.RegisterCommands<Profile>();
+            slash.RegisterCommands<Lotto>();
+            slash.RegisterCommands<Items>();
             */
             await discord.ConnectAsync();
             await Task.Delay(-1);
+        }
+
+        private static Task Discord_ClientErrored(DiscordClient sender, ClientErrorEventArgs args)
+        {
+            Console.WriteLine(args.Exception);
+            return Task.CompletedTask;
         }
 
         private static Task Commands_CommandErrored(CommandsNextExtension sender, CommandErrorEventArgs args)
