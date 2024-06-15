@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\kruug\\source\\repos\\Vidar\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|c:\\users\\kruug\\source\\repos\\vidar\\vidar\\lotto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|solutionrelative:vidar\\lotto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|c:\\users\\kruug\\source\\repos\\vidar\\vidar\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|solutionrelative:vidar\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|c:\\users\\kruug\\source\\repos\\vidar\\vidar\\lotto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|solutionrelative:vidar\\lotto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|c:\\users\\kruug\\source\\repos\\vidar\\vidar\\items.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|solutionrelative:vidar\\items.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|c:\\users\\kruug\\source\\repos\\vidar\\vidar\\profile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,8 +23,12 @@
       "RelativeMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|solutionrelative:vidar\\secrets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|c:\\users\\kruug\\source\\repos\\vidar\\vidar\\items.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|solutionrelative:vidar\\items.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|c:\\users\\kruug\\source\\repos\\vidar\\vidar\\cartel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|solutionrelative:vidar\\cartel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|c:\\users\\kruug\\source\\repos\\vidar\\vidar\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1DBE296-979D-4A29-B610-97AE38A7C319}|Vidar\\Vidar.csproj|solutionrelative:vidar\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,7 +46,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
+              "Title": "Cartel.cs",
+              "DocumentMoniker": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Cartel.cs",
+              "RelativeDocumentMoniker": "Vidar\\Cartel.cs",
+              "ToolTip": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Cartel.cs",
+              "RelativeToolTip": "Vidar\\Cartel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-16T21:06:46.236Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\User.cs",
+              "RelativeDocumentMoniker": "Vidar\\User.cs",
+              "ToolTip": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\User.cs",
+              "RelativeToolTip": "Vidar\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T19:11:19.609Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Items.cs",
               "DocumentMoniker": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Items.cs",
               "RelativeDocumentMoniker": "Vidar\\Items.cs",
@@ -46,60 +78,56 @@
               "RelativeToolTip": "Vidar\\Items.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T16:10:40.768Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-02T16:10:40.768Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Lotto.cs",
               "DocumentMoniker": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Lotto.cs",
               "RelativeDocumentMoniker": "Vidar\\Lotto.cs",
               "ToolTip": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Lotto.cs",
               "RelativeToolTip": "Vidar\\Lotto.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAQwCkAAAASAAAA",
+              "ViewState": "AQIAAL0AAAAAAAAAAAAmwNQAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-02T16:10:12.573Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Profile.cs",
               "DocumentMoniker": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Profile.cs",
               "RelativeDocumentMoniker": "Vidar\\Profile.cs",
               "ToolTip": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Profile.cs",
               "RelativeToolTip": "Vidar\\Profile.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAAdAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAJUAAAAbAQAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T16:09:57.523Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-02T16:09:57.523Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Secrets.cs",
               "DocumentMoniker": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Secrets.cs",
               "RelativeDocumentMoniker": "Vidar\\Secrets.cs",
               "ToolTip": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Secrets.cs",
               "RelativeToolTip": "Vidar\\Secrets.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAzAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T15:22:04.652Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-02T15:22:04.652Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Program.cs",
               "RelativeDocumentMoniker": "Vidar\\Program.cs",
               "ToolTip": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Program.cs",
               "RelativeToolTip": "Vidar\\Program.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAgwAcAAAAdAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAqwEMAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T14:54:46.896Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-02T14:54:46.896Z"
             }
           ]
         }
