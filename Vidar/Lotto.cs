@@ -210,6 +210,7 @@ namespace Vidar
                 lottoEntries.Clear();
             } else
             {
+                if (!lottoLock) { return; }
                 await ctx.TriggerTypingAsync();
                 await ctx.RespondAsync($"Shame on you,{lottoRunner.Mention}...where is the send line?");
                 await listen(ctx);

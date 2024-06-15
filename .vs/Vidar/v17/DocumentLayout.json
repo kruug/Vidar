@@ -38,11 +38,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Lotto.cs",
+              "DocumentMoniker": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Lotto.cs",
+              "RelativeDocumentMoniker": "Vidar\\Lotto.cs",
+              "ToolTip": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Lotto.cs",
+              "RelativeToolTip": "Vidar\\Lotto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T20:36:15.184Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -54,7 +67,8 @@
               "RelativeToolTip": "Vidar\\Cartel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T21:06:46.236Z"
+              "WhenOpened": "2024-05-16T21:06:46.236Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -79,19 +93,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-02T16:10:40.768Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Lotto.cs",
-              "DocumentMoniker": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Lotto.cs",
-              "RelativeDocumentMoniker": "Vidar\\Lotto.cs",
-              "ToolTip": "C:\\Users\\kruug\\source\\repos\\Vidar\\Vidar\\Lotto.cs",
-              "RelativeToolTip": "Vidar\\Lotto.cs",
-              "ViewState": "AQIAAL0AAAAAAAAAAAAmwNQAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T16:10:12.573Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
