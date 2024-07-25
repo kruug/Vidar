@@ -13,6 +13,7 @@ using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using System.Globalization;
 using DSharpPlus.Interactivity;
+using System.Drawing;
 
 namespace Vidar
 {
@@ -22,6 +23,8 @@ namespace Vidar
         public async Task RegisterCommand(CommandContext ctx, int UserID)
         {
             await ctx.TriggerTypingAsync();
+            Color WineRed = Color.FromArgb(166, 17, 86);
+            Color FaeGreen = Color.FromArgb(44, 128, 106);
             string desc;
             DiscordRole lottoUsers = ctx.Guild.GetRole(1235663172006973460);
 
@@ -43,17 +46,28 @@ namespace Vidar
 
             var dbresult = await command.ExecuteNonQueryAsync();
 
+            DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
+
             if (dbresult > 0)
             {
+                embed.Title = "Registration Successful";
+                embed.Color = new DiscordColor(FaeGreen.R, FaeGreen.G, FaeGreen.B);
+                embed.Description = $"{ctx.User.Mention}, your ID has been sucessfully registered as [{UserID}]";
+
                 desc = $"{ctx.User.Mention}, your ID has been sucessfully registered as [{UserID}]";
                 await ctx.Member.GrantRoleAsync(lottoUsers);
             }
             else
             {
+                embed.Title = "Registration Failed";
+                embed.Color = new DiscordColor(WineRed.R,WineRed.G, WineRed.B);
+                embed.Description = "Failed to submit your user ID. Please contact kruug[3573] to resolve the issue.";
+
                 desc = "Failed to submit your user ID. Please contact kruug[3573] to resolve the issue.";
             }
 
-            await ctx.RespondAsync(desc);
+            //await ctx.RespondAsync(desc);
+            await ctx.RespondAsync(embed);
         }
 
         [Command("profile")]
@@ -142,7 +156,7 @@ namespace Vidar
             //embed.Footer = new EmbedFooter() { Text = DateTime.Today.ToShortDateString() + " || Inspirational quotes provided by ZenQuotes API" };
             //embed.Image = new EmbedMedia() { Url = "Media URL", Width = 150, Height = 150 }; //valid for thumb and video
             //embed.Provider = new EmbedProvider() { Name = "Provider Name", Url = "Provider Url" };
-            embed.Url = "https://cartelempire.online/User/" + userInfo?.userID;
+            embed.Url = "https://cartelempire.online/User/" + ce_user_id;
             embed.Color = new DiscordColor(44, 128, 106); //alpha will be ignored, you can use any RGB color
             //embed.Author = new EmbedAuthor() { Name = target_name, Url = "https://www.torn.com/profiles.php?XID=" + torn_id };
             DateTime active = DateTimeOffset.FromUnixTimeSeconds((long)userInfo?.lastActive).DateTime;

@@ -14,6 +14,7 @@ using System.Diagnostics;
 using System.Linq.Expressions;
 using DSharpPlus.EventArgs;
 using MySqlConnector;
+using System.Drawing;
 
 namespace Vidar
 {
@@ -29,12 +30,21 @@ namespace Vidar
         static Random rnd = new Random();
         DiscordUser? lottoRunner;
         InteractivityResult<DiscordMessage> result;
+        DiscordColor WineRed = new DiscordColor(166, 17, 86);
+        DiscordColor FaeGreen = new DiscordColor(44, 128, 106);
 
         [Command("startlotto")]
         [Aliases("sl")]
         public async Task StartLottoCommand(CommandContext ctx, [RemainingText] string prize)
         {
             DiscordRole lottoPing = ctx.Guild.GetRole(1235663172006973460);
+            DiscordRole TCPMember = ctx.Guild.GetRole(1250783369877389403);
+
+            if (ctx.Guild.Id == 1250771950326775888)
+            {
+                lottoPing = TCPMember;
+            }
+
             if (!ctx.Member.Roles.Contains(lottoPing))
             {
                 await ctx.RespondAsync("You are not registered with the bot. Please use `!register <Cartel Empire ID>` to register your ID with the bot.");
@@ -78,17 +88,23 @@ namespace Vidar
                 {
                     await ctx.TriggerTypingAsync();
                     string response = "";
+                    DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
                     if (lottoEntries.Contains(ctx.User))
                     {
-                        response = $"{ctx.User.Mention} has already entered the lotto.";
+                        embed.Color = WineRed;
+                        int lottoindex = lottoEntries.IndexOf(ctx.User);
+                        response = $"{ctx.User.Mention} has already entered the lotto. (Entry #{lottoindex})";
                     }
                     else
                     {
+                        embed.Color = FaeGreen;
                         lottoEntries.Add(ctx.User);
-                        response = $"{ctx.User.Mention} has entered the lotto for {lottoPrize}.";
-                        
+                        int lottoindex = lottoEntries.IndexOf(ctx.User);
+                        response = $"{ctx.User.Mention} has entered the lotto for **{lottoPrize}**. (Entry #{lottoindex})";
                     }
-                    await ctx.Channel.SendMessageAsync(response);
+                    embed.Description = response;
+                    //await ctx.Channel.SendMessageAsync(response);
+                    await ctx.Channel.SendMessageAsync(embed);
                 }
                 else
                 {
@@ -228,7 +244,7 @@ namespace Vidar
             autodraw = false;
             lastcall = false;
             lottoEntries.Clear();
-            result = new InteractivityResult<DiscordMessage>();
+            //result = new InteractivityResult<DiscordMessage>();
             await ctx.RespondAsync("Lotto terminated.");
         }
 
@@ -256,6 +272,7 @@ namespace Vidar
 
         public async Task DrawSubroutine(CommandContext ctx)
         {
+            Profile x = new Profile();
             long winner_id = 0;
             lottoDrawn = true;
             int r = rnd.Next(lottoEntries.Count);
@@ -293,6 +310,7 @@ namespace Vidar
                 await ctx.Channel.SendMessageAsync("SQL connection failed in report." + Environment.NewLine + ex.Message);
             }
             await ctx.RespondAsync($"Congratulations {winner.Mention}[{winner_id}]! You won the lotto for {lottoPrize} from {lottoRunner.Mention}!");
+            await x.ProfileCommand(ctx, winner);
 
             await listen(ctx);
         }

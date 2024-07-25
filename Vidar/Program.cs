@@ -75,4 +75,4 @@ namespace Vidar
     }
 }
 
-//https://discord.com/api/oauth2/authorize?client_id=1184374468655726592&permissions=1099713047616&scope=bot
+//https://discord.com/oauth2/authorize?client_id=1235655726911852586&permissions=268577792&integration_type=0&scope=bot
