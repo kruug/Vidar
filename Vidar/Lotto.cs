@@ -20,13 +20,14 @@ namespace Vidar
 {
     internal class Lotto : BaseCommandModule
     {
-        List<DiscordUser> lottoEntries = new List<DiscordUser>();
+        List<DiscordMember> lottoEntries = new List<DiscordMember>();
         bool autodraw = false;
         bool lastcall = false;
         bool lottoLock = false;
         bool lottoDrawn = false;
         bool prizeSent = false;
         string lottoPrize = "";
+        string lottoType = "regular";
         static Random rnd = new Random();
         DiscordUser? lottoRunner;
         InteractivityResult<DiscordMessage> result;
@@ -38,12 +39,6 @@ namespace Vidar
         public async Task StartLottoCommand(CommandContext ctx, [RemainingText] string prize)
         {
             DiscordRole lottoPing = ctx.Guild.GetRole(1235663172006973460);
-            DiscordRole TCPMember = ctx.Guild.GetRole(1250783369877389403);
-
-            if (ctx.Guild.Id == 1250771950326775888)
-            {
-                lottoPing = TCPMember;
-            }
 
             if (!ctx.Member.Roles.Contains(lottoPing))
             {
@@ -52,10 +47,10 @@ namespace Vidar
             {
                 await ctx.TriggerTypingAsync();
                 lottoRunner = ctx.User;
-                //DiscordRole lottoPing = ctx.Guild.GetRole(1235663172006973460);
                 lottoLock = true;
                 lottoEntries.Clear();
                 lottoPrize = prize;
+                lottoType = "regular";
 
                 string lottoStartMessage = $"Hey, {lottoPing.Mention}!" + System.Environment.NewLine + $"A lotto has started for {prize}! Use `!j` to join the lotto!";
 
@@ -70,45 +65,120 @@ namespace Vidar
             }
         }
 
+        [Command("startnooblotto")]
+        [Aliases("snl")]
+        public async Task StartNoobLottoCommand(CommandContext ctx, [RemainingText] string prize)
+        {
+            DiscordRole lottoPing = ctx.Guild.GetRole(1235663172006973460);
+            DiscordRole nooblotto = ctx.Guild.GetRole(1294302632311132190);
+
+            if (!ctx.Member.Roles.Contains(lottoPing))
+            {
+                await ctx.RespondAsync("You are not registered with the bot. Please use `!register <Cartel Empire ID>` to register your ID with the bot.");
+            }
+            else if (!lottoLock)
+            {
+                await ctx.TriggerTypingAsync();
+                lottoRunner = ctx.User;
+                lottoLock = true;
+                lottoEntries.Clear();
+                lottoPrize = prize;
+                lottoType = "noob";
+
+                string lottoStartMessage = $"Hey, {nooblotto.Mention}!" + System.Environment.NewLine + $"A lotto has started for {prize}! Use `!j` to join the lotto!";
+
+                var msg = await new DiscordMessageBuilder()
+                    .WithContent(lottoStartMessage)
+                    .WithAllowedMentions(new IMention[] { new RoleMention(nooblotto) })
+                    .SendAsync(ctx.Channel);
+            }
+            else
+            {
+                await ctx.RespondAsync("Please wait until the current lotto is completed.");
+            }
+        }
+
         [Command("join")]
         [Aliases("j")]
         public async Task JoinLottoCommand(CommandContext ctx)
         {
             DiscordRole lottoPing = ctx.Guild.GetRole(1235663172006973460);
-            if (ctx.User == lottoRunner)
+            DiscordRole nooblotto = ctx.Guild.GetRole(1294302632311132190);
+
+            if (lottoType == "regular")
             {
-                await ctx.Channel.SendMessageAsync("You cannot join your own lotto.");
-            }
-            else if (!ctx.Member.Roles.Contains(lottoPing))
-            {
-                await ctx.Channel.SendMessageAsync($"{ctx.User.Mention}, you are not registered with the bot. Please use `!register <Cartel Empire ID>` to register your ID with the bot.");
-            } else
-            {
-                if (lottoLock && !lottoDrawn)
+                if (ctx.User == lottoRunner)
                 {
-                    await ctx.TriggerTypingAsync();
-                    string response = "";
-                    DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
-                    if (lottoEntries.Contains(ctx.User))
-                    {
-                        embed.Color = WineRed;
-                        int lottoindex = lottoEntries.IndexOf(ctx.User);
-                        response = $"{ctx.User.Mention} has already entered the lotto. (Entry #{lottoindex})";
-                    }
-                    else
-                    {
-                        embed.Color = FaeGreen;
-                        lottoEntries.Add(ctx.User);
-                        int lottoindex = lottoEntries.IndexOf(ctx.User);
-                        response = $"{ctx.User.Mention} has entered the lotto for **{lottoPrize}**. (Entry #{lottoindex})";
-                    }
-                    embed.Description = response;
-                    //await ctx.Channel.SendMessageAsync(response);
-                    await ctx.Channel.SendMessageAsync(embed);
+                    await ctx.Channel.SendMessageAsync("You cannot join your own lotto.");
+                }
+                else if (!ctx.Member.Roles.Contains(lottoPing)) {
+                    await ctx.Channel.SendMessageAsync($"{ctx.User.Mention}, you are not registered with the bot. Please use `!register <Cartel Empire ID>` to register your ID with the bot.");
                 }
                 else
                 {
-                    await ctx.Channel.SendMessageAsync("No active lotto found");
+                    if (lottoLock && !lottoDrawn)
+                    {
+                        await ctx.TriggerTypingAsync();
+                        string response = "";
+                        DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
+                        if (lottoEntries.Contains(ctx.User))
+                        {
+                            embed.Color = WineRed;
+                            int lottoindex = lottoEntries.IndexOf(ctx.Member);
+                            response = $"{ctx.User.Mention} has already entered the lotto. (Entry #{lottoindex})";
+                        }
+                        else
+                        {
+                            embed.Color = FaeGreen;
+                            lottoEntries.Add(ctx.Member);
+                            int lottoindex = lottoEntries.IndexOf(ctx.Member);
+                            response = $"{ctx.User.Mention} has entered the lotto for **{lottoPrize}**. (Entry #{lottoindex})";
+                        }
+                        embed.Description = response;
+                        //await ctx.Channel.SendMessageAsync(response);
+                        await ctx.Channel.SendMessageAsync(embed);
+                    }
+                    else
+                    {
+                        await ctx.Channel.SendMessageAsync("No active lotto found");
+                    }
+                }
+            } else {
+                if (ctx.User == lottoRunner)
+                {
+                    await ctx.Channel.SendMessageAsync("You cannot join your own lotto.");
+                }
+                else if (!ctx.Member.Roles.Contains(nooblotto)) {
+                    await ctx.Channel.SendMessageAsync($"{ctx.User.Mention}, you are not a youngling.");
+                }
+                else
+                {
+                    if (lottoLock && !lottoDrawn)
+                    {
+                        await ctx.TriggerTypingAsync();
+                        string response = "";
+                        DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
+                        if (lottoEntries.Contains(ctx.User))
+                        {
+                            embed.Color = WineRed;
+                            int lottoindex = lottoEntries.IndexOf(ctx.Member);
+                            response = $"{ctx.User.Mention} has already entered the lotto. (Entry #{lottoindex})";
+                        }
+                        else
+                        {
+                            embed.Color = FaeGreen;
+                            lottoEntries.Add(ctx.Member);
+                            int lottoindex = lottoEntries.IndexOf(ctx.Member);
+                            response = $"{ctx.User.Mention} has entered the lotto for **{lottoPrize}**. (Entry #{lottoindex})";
+                        }
+                        embed.Description = response;
+                        //await ctx.Channel.SendMessageAsync(response);
+                        await ctx.Channel.SendMessageAsync(embed);
+                    }
+                    else
+                    {
+                        await ctx.Channel.SendMessageAsync("No active lotto found");
+                    }
                 }
             }
             await ctx.Channel.DeleteMessageAsync(ctx.Message);
@@ -135,25 +205,20 @@ namespace Vidar
             }
         }
 
+        [Command("fdraw")]
+        [RequirePermissions(permissions: Permissions.ManageMessages)]
+        public async Task ForceDrawLottoCommand(CommandContext ctx)
+        {
+            await DrawSubroutine(ctx);
+        }
+
         [Command("autodraw")]
         public async Task AutoDrawCommand(CommandContext ctx, [RemainingText] int countdown = 5)
         {
             if (ctx.User == lottoRunner)
             {
                 autodraw = true;
-                /*string timeunit = new string(countdown.TakeWhile(c => !Char.IsLetter(c)).ToArray());
-                string message = "";
-                int counttime = int.Parse(countdown.Substring(0,countdown.IndexOf(timeunit)));
 
-                if (timeunit.ToLower() == "m")
-                {
-                    message = $"${counttime} minutes.";
-                    counttime = counttime * 60;
-                } else
-                {
-                    message = $"${counttime} seconds.";
-                }
-                */
                 await ctx.Channel.SendMessageAsync($"The lotto will be drawn in {countdown} minutes.");
                 await TimeDelayDraw(ctx, (countdown * 60));
             } else
@@ -167,12 +232,20 @@ namespace Vidar
         [Aliases("lc")]
         public async Task LastCallCommand(CommandContext ctx)
         {
+            DiscordRole lottoPing = ctx.Guild.GetRole(1235663172006973460);
+            DiscordRole nooblotto = ctx.Guild.GetRole(1294302632311132190);
+
             if (ctx.User == lottoRunner)
             {
                 if (!lastcall)
                 {
-                    DiscordRole lottoPing = ctx.Guild.GetRole(1235663172006973460);
-                    await ctx.Channel.SendMessageAsync($"Last Call! {lottoPing.Mention}! The lotto will be drawn soon!");
+                    if (lottoType == "regular")
+                    {
+                        await ctx.Channel.SendMessageAsync($"Last Call! {lottoPing.Mention}! The lotto will be drawn soon!");
+                    } else
+                    {
+                        await ctx.Channel.SendMessageAsync($"Last Call! {nooblotto.Mention}! The lotto will be drawn soon!");
+                    }
                     lastcall = true;
                 }
                 else
@@ -276,7 +349,7 @@ namespace Vidar
             long winner_id = 0;
             lottoDrawn = true;
             int r = rnd.Next(lottoEntries.Count);
-            DiscordUser winner = lottoEntries[r];
+            DiscordMember winner = lottoEntries[r];
 
             MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder
             {
@@ -309,6 +382,8 @@ namespace Vidar
             {
                 await ctx.Channel.SendMessageAsync("SQL connection failed in report." + Environment.NewLine + ex.Message);
             }
+            lottoType = "regular";
+
             await ctx.RespondAsync($"Congratulations {winner.Mention}[{winner_id}]! You won the lotto for {lottoPrize} from {lottoRunner.Mention}!");
             await x.ProfileCommand(ctx, winner);
 

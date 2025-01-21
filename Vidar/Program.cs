@@ -10,6 +10,8 @@ using DSharpPlus.CommandsNext.Executors;
 using DSharpPlus.Interactivity.Enums;
 using DSharpPlus.Interactivity.Extensions;
 using DSharpPlus.Interactivity;
+using System.Security.Cryptography.X509Certificates;
+using System.Runtime.CompilerServices;
 
 namespace Vidar
 {
@@ -17,6 +19,7 @@ namespace Vidar
     {
         static async Task Main(string[] args)
         {
+
             var discord = new DiscordClient(new DiscordConfiguration()
             {
                 Token = Secrets.DISCORD_TOKEN,
@@ -50,13 +53,6 @@ namespace Vidar
             commands.CommandErrored += Commands_CommandErrored;
             discord.ClientErrored += Discord_ClientErrored;
 
-            /*
-            var slash = discord.UseSlashCommands();
-
-            slash.RegisterCommands<Profile>();
-            slash.RegisterCommands<Lotto>();
-            slash.RegisterCommands<Items>();
-            */
             await discord.ConnectAsync();
             await Task.Delay(-1);
         }

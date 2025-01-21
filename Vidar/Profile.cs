@@ -14,11 +14,14 @@ using Microsoft.Extensions.Logging;
 using System.Globalization;
 using DSharpPlus.Interactivity;
 using System.Drawing;
+using DSharpPlus;
 
 namespace Vidar
 {
     internal class Profile : BaseCommandModule
     {
+        DiscordColor Greyish = new DiscordColor(137, 137, 137);
+
         [Command("register")]
         public async Task RegisterCommand(CommandContext ctx, int UserID)
         {
@@ -72,7 +75,7 @@ namespace Vidar
 
         [Command("profile")]
         [Aliases("p")]
-        public async Task ProfileCommand(CommandContext ctx, DiscordUser? target = null)
+        public async Task ProfileCommand(CommandContext ctx, DiscordMember? target = null)
         {
             await ctx.TriggerTypingAsync();
             string disc_user_id = "blank";
@@ -84,7 +87,7 @@ namespace Vidar
             {
                 disc_user_id = target.Id.ToString();
             }
-            Console.WriteLine(disc_user_id);
+            //Console.WriteLine(disc_user_id);
             MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder
             {
                 Server = Secrets.SQL_SERVER,
@@ -109,7 +112,7 @@ namespace Vidar
                     ce_user_id = reader.GetInt64(0).ToString();
                 }
             }
-            Console.WriteLine(ce_user_id);
+            //Console.WriteLine(ce_user_id);
             HttpClient cartelClient = new HttpClient();
             FormUrlEncodedContent encoded = new FormUrlEncodedContent(new Dictionary<string, string>
             {
@@ -197,11 +200,7 @@ namespace Vidar
                 embed.AddField("Employment", "Unemployed", true);
             }*/
 
-            if (userInfo?.cartelId == 0)
-            {
-                embed.AddField("Cartel", "None", true);
-            }
-            else
+            if (userInfo.cartelId.HasValue)
             {
                 FormUrlEncodedContent cartel_encoded = new FormUrlEncodedContent(new Dictionary<string, string>
                 {
@@ -220,6 +219,10 @@ namespace Vidar
                 Cartel? cartelInfo = JsonSerializer.Deserialize<Cartel>(cartel_contents);
 
                 embed.AddField(DiscordEmoji.FromName(ctx.Client, ":crossed_swords:") + " Cartel", "[" + cartelInfo?.name + "](https://cartelempire.online/cartel/" + cartelInfo?.id + ")", true);
+            }
+            else
+            {
+                embed.AddField("Cartel", "None", true);
             }
 
             /*try
